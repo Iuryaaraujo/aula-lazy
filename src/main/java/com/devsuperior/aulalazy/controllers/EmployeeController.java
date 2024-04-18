@@ -4,10 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.devsuperior.aulalazy.dto.EmployeeDepartmentDTO;
 import com.devsuperior.aulalazy.dto.EmployeeMinDTO;
@@ -32,9 +29,16 @@ public class EmployeeController {
 		return ResponseEntity.ok(obj);
 	}
 	
-	@GetMapping
+	//@GetMapping
 	public ResponseEntity<List<EmployeeDepartmentDTO>> findEmployeesWithDepartments() {
 		List<EmployeeDepartmentDTO> list = service.findEmployeesWithDepartments();		
 		return ResponseEntity.ok(list);
+	}
+
+	@GetMapping
+	public ResponseEntity<List<EmployeeMinDTO>> findByIdName(
+			@RequestParam(name = "name", defaultValue = "") String name) {
+		List<EmployeeMinDTO> result = service.findByIdName(name);
+		return ResponseEntity.ok(result);
 	}
 }

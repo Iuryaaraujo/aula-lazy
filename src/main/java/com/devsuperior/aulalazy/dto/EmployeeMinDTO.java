@@ -11,7 +11,7 @@ public class EmployeeMinDTO implements Serializable {
 	private String name;
 	private String email;
 	
-	public EmployeeMinDTO() {
+	public EmployeeMinDTO(EmployeeMinDTO x) {
 	}
 
 	public EmployeeMinDTO(Long id, String name, String email) {

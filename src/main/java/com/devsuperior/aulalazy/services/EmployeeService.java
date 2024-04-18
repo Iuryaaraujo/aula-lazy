@@ -35,5 +35,11 @@ public class EmployeeService {
 	public List<EmployeeDepartmentDTO> findEmployeesWithDepartments() {
 		List<Employee> result = repository.findEmployeesWithDepartments();
 		return result.stream().map(x -> new EmployeeDepartmentDTO(x)).collect(Collectors.toList());
-	}	
-}
+	}
+
+	@Transactional(readOnly = true)
+	public List<EmployeeMinDTO> findByIdName(String name) {
+		List<Employee> result = repository.findByNameContainingIgnoreCase(name);
+		return  result.stream().map(x -> new EmployeeMinDTO(x)).toList();
+		}
+	}

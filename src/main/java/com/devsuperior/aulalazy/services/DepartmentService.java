@@ -26,7 +26,7 @@ public class DepartmentService {
 		return new DepartmentDTO(result.get());
 	}
 
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = true) // Operação somente de leitura
 	public List<EmployeeMinDTO> findEmployeesByDepartment(Long id) {
 		Optional<Department> result = repository.findById(id);
 		List<Employee> list = result.get().getEmployees();
