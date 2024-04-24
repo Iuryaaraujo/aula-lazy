@@ -19,6 +19,9 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeRepository repository;
 
+	// @Transactional(readOnly = true) operação usada para leitura
+	// Usa SOMENTE no GET
+	// Só o @Transactional usado no PUT< POST, DELETE
 	@Transactional(readOnly = true)
 	public EmployeeMinDTO findByIdMin(Long id) {
 		Optional<Employee> result = repository.findById(id);
@@ -37,6 +40,7 @@ public class EmployeeService {
 		return result.stream().map(x -> new EmployeeDepartmentDTO(x)).collect(Collectors.toList());
 	}
 
+	// QUERY METHODS
 	@Transactional(readOnly = true)
 	public List<EmployeeMinDTO> findByIdName(String name) {
 		List<Employee> result = repository.findByNameContainingIgnoreCase(name);
